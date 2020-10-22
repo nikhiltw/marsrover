@@ -20,4 +20,20 @@ class Instructions(instructions: String) : Iterator<Instruction> {
 
 }
 
-enum class Instruction { L, R, M }
+enum class Instruction {
+    L {
+        override fun execute(rover: Rover) = rover.rotateLeft()
+    },
+
+    R {
+        override fun execute(rover: Rover) = rover.rotateRight()
+    },
+
+    M {
+        override fun execute(rover: Rover) = rover.move()
+    };
+
+    abstract fun execute(rover: Rover)
+}
+
+
